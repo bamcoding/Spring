@@ -23,7 +23,7 @@ public class IndexController {
 		view.setViewName("sub");
 		view.setViewName("main");*/
 		
-		// Servlet의 reqeust.setAttribute(k,v)와 같다.
+		// Servlet의 reqeust.setAttribute(k,v)와 같다. sd
 		view.addObject("key1","value1");
 		view.addObject("key2","value2");
 		view.addObject("key3","value3");
