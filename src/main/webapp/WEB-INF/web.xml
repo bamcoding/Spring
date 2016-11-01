@@ -21,6 +21,18 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+<!-- needed for ContextLoaderListener -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/*Context.xml</param-value>
+	</context-param>
+
+	<!-- Bootstraps the root web application context before servlet initialization -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>
