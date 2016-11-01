@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ktds.dao.IndexDao;
+import com.ktds.dao.impl.IndexDaoImpl;
 import com.ktds.service.IndexService;
 
 //Annotation
@@ -16,7 +18,7 @@ public class IndexController {
 	public void setIndexService(IndexService indexService) {
 		this.indexService = indexService;
 	}
-
+	
 	// http://localhost:8080/HelloMVC/로 접속하면 실행됨.
 	@RequestMapping("/")
 	public String viewIndexPage(){
