@@ -29,5 +29,9 @@
 	
 	<!-- indexController 등록 -->
 	<bean	id="indexController"
-			class="com.ktds.web.IndexController"/>
+			class="com.ktds.web.IndexController">
+		<property name="indexService" ref="indexService"></property>
+	</bean>
+			
+		
 </beans>
