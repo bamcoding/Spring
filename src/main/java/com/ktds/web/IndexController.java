@@ -1,13 +1,16 @@
 package com.ktds.web;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ktds.dao.IndexDao;
-import com.ktds.dao.impl.IndexDaoImpl;
 import com.ktds.service.IndexService;
+import com.ktds.vo.DepartmentsVO;
+import com.ktds.vo.EmployeesVO;
 
 //Annotation
 @Controller
@@ -48,7 +51,75 @@ public class IndexController {
 		ModelAndView view = new ModelAndView();
 		view.setViewName("param");
 		view.addObject("param1", param);
-		return view;
-		
+		return view;	
 	}
+	
+	@RequestMapping("/now")
+	public ModelAndView viewNowDateTimePage(){
+		
+		String nowDateTime = indexService.getNowDateTime();
+		System.out.println(nowDateTime);
+		
+		ModelAndView view = new ModelAndView();
+		view.setViewName("now");
+		view.addObject("nowDateTime",nowDateTime);
+		
+		return view;
+	}
+	
+	@RequestMapping("/hr/employees")
+	public ModelAndView viewAllEmpoyeesPage(){
+		List<EmployeesVO> allEmployees = indexService.getAllEmployees();
+		
+		ModelAndView view = new ModelAndView();
+		view.setViewName("hr/employees");
+		view.addObject("allEmployees", allEmployees);
+		return view;
+	}
+	
+	@RequestMapping("/hr/departments")
+	public ModelAndView viewAllDepartmentsPage(){
+		List<DepartmentsVO> allDepartments = indexService.getAllDepartments();
+		
+		ModelAndView view = new ModelAndView("hr/departments");
+		view.addObject("allDepartments",allDepartments);
+		return view;
+	}
+	
+	@RequestMapping("/hr/employee/{employeeId}")
+	public ModelAndView viewEmployeePage(@PathVariable String employeeId){
+		
+		EmployeesVO employee = indexService.getEmployeeByEmployeeId(employeeId);
+		
+		ModelAndView view = new ModelAndView();
+		view.setViewName("hr/employees");
+		view.addObject("employee", employee);
+		return view;
+	}
+	
+	@RequestMapping("/hr/department/{departmentId}")
+	public ModelAndView viewDepartmentPage(@PathVariable String departmentId){
+		
+		DepartmentsVO department = indexService.getDepartmentByDepartmentId(departmentId);
+		
+		ModelAndView view = new ModelAndView();
+		view.setViewName("hr/departments");
+		view.addObject("department",department);
+		return view;
+	}
+	
+	@RequestMapping("/hr/addNewEmployee")
+	public String viewAddNewEmployeePage(){
+		return "/hr/addNewEmployee";
+	}
+	@RequestMapping("/hr/doAddEmployeeAction")
+	public ModelAndView doAddEmployeeAction(EmployeesVO employee){
+		
+		boolean isSuccess = indexService.addNewEmployee(employee);
+		
+		ModelAndView view =new ModelAndView();
+		view.setViewName("redirect:/hr/employees");;
+		return view;
+	}
+	
 }

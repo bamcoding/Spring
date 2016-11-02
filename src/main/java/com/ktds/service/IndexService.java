@@ -1,5 +1,16 @@
 package com.ktds.service;
 
-public interface IndexService {
+import java.util.List;
 
+import com.ktds.vo.DepartmentsVO;
+import com.ktds.vo.EmployeesVO;
+
+public interface IndexService {
+	public String getNowDateTime();
+	public List<EmployeesVO> getAllEmployees();
+	public List<DepartmentsVO> getAllDepartments();
+	public EmployeesVO getEmployeeByEmployeeId(String employeeId);
+	public DepartmentsVO getDepartmentByDepartmentId(String departmentId);
+	public boolean addNewEmployee(EmployeesVO employee);
+	
 }

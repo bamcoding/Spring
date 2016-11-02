@@ -1,5 +1,15 @@
 package com.ktds.biz;
 
-public interface IndexBiz {
+import java.util.List;
 
+import com.ktds.vo.DepartmentsVO;
+import com.ktds.vo.EmployeesVO;
+
+public interface IndexBiz {
+	public String getNowDateTime();
+	public List<EmployeesVO> getAllEmployees();
+	public List<DepartmentsVO> getAllDepartments();
+	public EmployeesVO getEmployeeByEmployeeId(String employeeId);
+	public DepartmentsVO getDepartmentByDepartmentId(String departmentId);
+	public boolean addNewEmployee(EmployeesVO employee);
 }
