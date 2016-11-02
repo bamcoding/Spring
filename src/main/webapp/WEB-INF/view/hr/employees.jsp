@@ -26,6 +26,7 @@
 		${employee.hireDate } /
 		${employee.salary } /
 		${employee.departmentId } /
+		<input type="button" value="삭제" onclick="location.href='/HelloMVC/hr/doRemoveEmployeeAction/${employee.employeeId }'"/>
 </c:if>
 </body>
 </html>

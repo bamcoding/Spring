@@ -44,4 +44,22 @@ public class IndexDaoImpl extends SqlSessionDaoSupport implements IndexDao{
 		// TODO Auto-generated method stub
 		return getSqlSession().insert("indexDao.addNewEmployee", employee);
 	}
+
+	@Override
+	public int removeEmployee(String employeeId) {
+		// TODO Auto-generated method stub
+		return getSqlSession().delete("indexDao.removeEmployee", employeeId);
+	}
+
+	@Override
+	public int addDepartment(DepartmentsVO departmentsVO) {
+		// TODO Auto-generated method stub
+		return getSqlSession().insert("indexDao.addDepartment", departmentsVO);
+	}
+
+	@Override
+	public int removeDepartment(String departmentId) {
+		// TODO Auto-generated method stub
+		return getSqlSession().delete("indexDao.removeDepartment", departmentId);
+	}
 }

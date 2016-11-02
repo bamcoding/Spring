@@ -67,6 +67,8 @@ public class IndexController {
 		return view;
 	}
 	
+	//employee
+	
 	@RequestMapping("/hr/employees")
 	public ModelAndView viewAllEmpoyeesPage(){
 		List<EmployeesVO> allEmployees = indexService.getAllEmployees();
@@ -76,16 +78,6 @@ public class IndexController {
 		view.addObject("allEmployees", allEmployees);
 		return view;
 	}
-	
-	@RequestMapping("/hr/departments")
-	public ModelAndView viewAllDepartmentsPage(){
-		List<DepartmentsVO> allDepartments = indexService.getAllDepartments();
-		
-		ModelAndView view = new ModelAndView("hr/departments");
-		view.addObject("allDepartments",allDepartments);
-		return view;
-	}
-	
 	@RequestMapping("/hr/employee/{employeeId}")
 	public ModelAndView viewEmployeePage(@PathVariable String employeeId){
 		
@@ -96,6 +88,45 @@ public class IndexController {
 		view.addObject("employee", employee);
 		return view;
 	}
+	
+	@RequestMapping("/hr/addNewEmployee")
+	public String viewAddNewEmployeePage(){
+		return "/hr/addNewEmployee";
+	}
+	
+	@RequestMapping("/hr/doAddEmployeeAction")
+	public ModelAndView doAddEmployeeAction(EmployeesVO employee){
+		
+		boolean isSuccess = indexService.addNewEmployee(employee);
+		
+		ModelAndView view =new ModelAndView();
+		view.setViewName("redirect:/hr/employees");;
+		return view;
+	}
+	
+	@RequestMapping("/hr/doRemoveEmployeeAction/{employeeId}")
+	public ModelAndView doRemoveEmployeeAction(@PathVariable String employeeId){
+		
+		boolean isSuccess = indexService.removeEmployee(employeeId);
+		
+		ModelAndView view = new ModelAndView();
+		view.setViewName("redirect:/hr/employees");
+		return view;
+	}
+	
+	
+	
+	//Department
+	
+	@RequestMapping("/hr/departments")
+	public ModelAndView viewAllDepartmentsPage(){
+		List<DepartmentsVO> allDepartments = indexService.getAllDepartments();
+		
+		ModelAndView view = new ModelAndView("hr/departments");
+		view.addObject("allDepartments",allDepartments);
+		return view;
+	}
+	
 	
 	@RequestMapping("/hr/department/{departmentId}")
 	public ModelAndView viewDepartmentPage(@PathVariable String departmentId){
@@ -108,18 +139,27 @@ public class IndexController {
 		return view;
 	}
 	
-	@RequestMapping("/hr/addNewEmployee")
-	public String viewAddNewEmployeePage(){
-		return "/hr/addNewEmployee";
+	@RequestMapping("/hr/addNewDepartment")
+	public String viewAddDepartmentPage(){
+		return "hr/addNewDepartment";
 	}
-	@RequestMapping("/hr/doAddEmployeeAction")
-	public ModelAndView doAddEmployeeAction(EmployeesVO employee){
+	
+	@RequestMapping("/hr/doAddDepartmentAction")
+	public ModelAndView doAddDepartmentAction(DepartmentsVO departmentsVO){
+		boolean isSuccess = indexService.addDepartment(departmentsVO);
 		
-		boolean isSuccess = indexService.addNewEmployee(employee);
-		
-		ModelAndView view =new ModelAndView();
-		view.setViewName("redirect:/hr/employees");;
+		ModelAndView view = new ModelAndView();
+		view.setViewName("redirect:/hr/departments");
 		return view;
 	}
 	
+	@RequestMapping("/hr/doRemoveDepartment/{departmentId}")
+	public ModelAndView doRemoveDepartment(@PathVariable String departmentId){
+		
+		boolean isSuccess = indexService.removeDepartment(departmentId);
+		ModelAndView view = new ModelAndView();
+		view.setViewName("redirect:/hr/departments");
+		return view;
+	}
+
 }

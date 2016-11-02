@@ -22,6 +22,7 @@
 		${department.departmentName } /
 		${department.managerId } /
 		${department.locationId } /
+		<input type="button" value="삭제" onclick="location.href='/HelloMVC/hr/doRemoveDepartment/${departmentId }'"/>
 </c:if>
 </body>
 </html>

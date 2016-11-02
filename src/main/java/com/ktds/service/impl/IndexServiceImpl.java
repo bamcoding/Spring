@@ -49,5 +49,23 @@ public class IndexServiceImpl implements IndexService{
 		// TODO Auto-generated method stub
 		return indexBiz.addNewEmployee(employee);
 	}
+
+	@Override
+	public boolean removeEmployee(String employeeId) {
+		// TODO Auto-generated method stub
+		return indexBiz.removeEmployee(employeeId);
+	}
+
+	@Override
+	public boolean addDepartment(DepartmentsVO departmentsVO) {
+		// TODO Auto-generated method stub
+		return indexBiz.addDepartment(departmentsVO);
+	}
+
+	@Override
+	public boolean removeDepartment(String departmentId) {
+		// TODO Auto-generated method stub
+		return indexBiz.removeDepartment(departmentId);
+	}
 	
 }

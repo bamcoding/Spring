@@ -48,4 +48,21 @@ public class IndexBizImpl implements IndexBiz {
 		// TODO Auto-generated method stub
 		return indexDao.addNewEmployee(employee) > 0;
 	}
+
+	@Override
+	public boolean removeEmployee(String employeeId) {
+		// TODO Auto-generated method stub
+		return indexDao.removeEmployee(employeeId)>0;
+	}
+
+	public boolean addDepartment(DepartmentsVO departmentsVO) {
+		// TODO Auto-generated method stub
+		return indexDao.addDepartment(departmentsVO)>0;
+	}
+
+	@Override
+	public boolean removeDepartment(String departmentId) {
+		// TODO Auto-generated method stub
+		return indexDao.removeDepartment(departmentId)>0;
+	}
 }

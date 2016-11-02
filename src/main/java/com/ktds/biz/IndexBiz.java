@@ -12,4 +12,7 @@ public interface IndexBiz {
 	public EmployeesVO getEmployeeByEmployeeId(String employeeId);
 	public DepartmentsVO getDepartmentByDepartmentId(String departmentId);
 	public boolean addNewEmployee(EmployeesVO employee);
+	public boolean removeEmployee(String employeeId);
+	public boolean addDepartment(DepartmentsVO departmentsVO);
+	public boolean removeDepartment(String departmentId);
 }
