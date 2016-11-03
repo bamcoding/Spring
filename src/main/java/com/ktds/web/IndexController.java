@@ -4,9 +4,10 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,7 @@ import com.ktds.vo.EmployeesVO;
 //Annotation
 @Controller
 public class IndexController {
+	Logger logger = LoggerFactory.getLogger(IndexController.class);
 	
 	private IndexService indexService;
 	
@@ -60,9 +62,10 @@ public class IndexController {
 	
 	@RequestMapping("/now")
 	public ModelAndView viewNowDateTimePage(){
-		
 		String nowDateTime = indexService.getNowDateTime();
-		System.out.println(nowDateTime);
+		logger.debug("오늘의 날짜: "+nowDateTime);
+		
+		//System.out.println(nowDateTime);
 		
 		ModelAndView view = new ModelAndView();
 		view.setViewName("now");
@@ -84,6 +87,7 @@ public class IndexController {
 	}
 	@RequestMapping("/hr/employee/{employeeId}")
 	public ModelAndView viewEmployeePage(@PathVariable String employeeId){
+		logger.info("파라미터: "+employeeId);
 		
 		EmployeesVO employee = indexService.getEmployeeByEmployeeId(employeeId);
 		
@@ -114,7 +118,6 @@ public class IndexController {
 	
 	@RequestMapping("/hr/doRemoveEmployeeAction/{employeeId}")
 	public ModelAndView doRemoveEmployeeAction(@PathVariable String employeeId){
-		
 		boolean isSuccess = indexService.removeEmployee(employeeId);
 		
 		ModelAndView view = new ModelAndView();

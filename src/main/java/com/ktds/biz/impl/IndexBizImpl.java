@@ -2,6 +2,9 @@ package com.ktds.biz.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.ktds.biz.IndexBiz;
 import com.ktds.dao.IndexDao;
 import com.ktds.vo.DepartmentsVO;
@@ -10,6 +13,8 @@ import com.ktds.vo.EmployeesVO;
 public class IndexBizImpl implements IndexBiz {
 	private IndexDao indexDao;
 
+	private Logger logger = LoggerFactory.getLogger(IndexBizImpl.class);
+	
 	public void setIndexDao(IndexDao indexDao) {
 		this.indexDao = indexDao;
 	}
@@ -52,7 +57,9 @@ public class IndexBizImpl implements IndexBiz {
 	@Override
 	public boolean removeEmployee(String employeeId) {
 		// TODO Auto-generated method stub
-		return indexDao.removeEmployee(employeeId)>0;
+		boolean isSuccess =  indexDao.removeEmployee(employeeId)>0;
+		logger.debug("삭제가 재데로 동작했는가 :"+isSuccess);
+		return isSuccess;
 	}
 
 	public boolean addDepartment(DepartmentsVO departmentsVO) {
