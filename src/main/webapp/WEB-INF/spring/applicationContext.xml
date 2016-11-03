@@ -7,7 +7,7 @@
 	<!-- HandlerMapping & HandlerAdapter 생성 -->
 	<mvc:annotation-driven />
 	
-	<!-- intercepter 등록하기 -->
+	<!-- intercepter 등록하기12 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
