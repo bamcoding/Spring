@@ -2,7 +2,11 @@ package com.ktds.web;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -95,12 +99,16 @@ public class IndexController {
 	}
 	
 	@RequestMapping("/hr/doAddEmployeeAction")
-	public ModelAndView doAddEmployeeAction(EmployeesVO employee){
-		
-		boolean isSuccess = indexService.addNewEmployee(employee);
-		
+	public ModelAndView doAddEmployeeAction(@Valid EmployeesVO employee, Errors errors){
 		ModelAndView view =new ModelAndView();
-		view.setViewName("redirect:/hr/employees");;
+
+		if(errors.hasErrors()){
+			view.setViewName("/hr/addNewEmployee");
+		}
+		else{
+			boolean isSuccess = indexService.addNewEmployee(employee);
+			view.setViewName("redirect:/hr/employees");;
+		}
 		return view;
 	}
 	

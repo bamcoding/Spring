@@ -7,6 +7,19 @@
 	<!-- HandlerMapping & HandlerAdapter 생성 -->
 	<mvc:annotation-driven />
 	
+	<!-- intercepter 등록 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean	id="urlIntercepter"
+					class="com.ktds.common.intercepter.URLIntercepter"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- command validation -->
+	<bean 	id="validator"
+			class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"></bean>
+	
 	<!-- static resources 설정 -->
 	<!-- location : /WEB-INF 이하의 물리적 경로 -->
 	<!-- Mapping : URL Pattern -->
